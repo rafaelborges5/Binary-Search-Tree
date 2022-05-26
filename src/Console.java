@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Consola {
+public class Console {
 
-    public static ArvoreBinaria arvoreBinaria;
+    public static BinarySearchTree binarySearchTree;
 
     public static void main(String[] args) {
-        arvoreBinaria = new ArvoreBinaria();
+        binarySearchTree = new BinarySearchTree();
         while (true) {
             printMenu();
             Scanner sysScanner = new Scanner(System.in);
@@ -51,7 +51,7 @@ public class Consola {
             String toSearch = getWord(new Scanner(System.in));
             toSearch = toSearch.toLowerCase();
             long startTime = System.nanoTime();
-            List<Node> listNodes = arvoreBinaria.getNodes(toSearch);
+            List<Node> listNodes = binarySearchTree.getNodes(toSearch);
             long endTime = System.nanoTime();
             long duration = (endTime - startTime);
 
@@ -62,18 +62,18 @@ public class Consola {
             toRemove = toRemove.toLowerCase();
 
             long startTime = System.nanoTime();
-            boolean success = arvoreBinaria.removeNode(toRemove, arvoreBinaria.getRoot());
+            boolean success = binarySearchTree.removeNode(toRemove, binarySearchTree.getRoot());
             long endTime = System.nanoTime();
             long duration = (endTime - startTime);
             if (success) System.out.println("Key removed in " + duration + " ns");
             else System.out.println("This key does not exist! Operation took " + duration + " ns");
         } else if (option == 5) {
             long startTime = System.nanoTime();
-            arvoreBinaria.balance();
+            binarySearchTree.balance();
             long duration = (System.nanoTime() - startTime);
             System.out.println("Tree balanced with Day Stout-Warren in " + duration + " ns");
         } else {
-            System.out.println("Invalid option"); 
+            System.out.println("Invalid option");
         }
     }
 
@@ -95,7 +95,7 @@ public class Consola {
     public static void readFileAndInsert(Scanner scanner) {
         while (scanner.hasNext()) {
             String sentence = scanner.nextLine();
-            Arrays.asList(sentence.toLowerCase().split(" ")).forEach(w -> arvoreBinaria.addNode(w));
+            Arrays.asList(sentence.toLowerCase().split(" ")).forEach(w -> binarySearchTree.addNode(w));
         }
     }
 
@@ -109,7 +109,7 @@ public class Consola {
             String sentence = sysScanner.nextLine();
             if (sentence.equals("")) break;
             System.out.println("Type the keys or press enter to terminate");
-            Arrays.asList(sentence.toLowerCase().split(" ")).forEach(w -> arvoreBinaria.addNode(w));
+            Arrays.asList(sentence.toLowerCase().split(" ")).forEach(w -> binarySearchTree.addNode(w));
         }
     }
 

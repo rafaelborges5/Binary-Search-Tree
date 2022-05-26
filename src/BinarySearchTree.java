@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class ArvoreBinaria {
+public class BinarySearchTree {
 
     private Node root;
 
-    public ArvoreBinaria() {
+    public BinarySearchTree() {
     }
 
     public Node getRoot() {
